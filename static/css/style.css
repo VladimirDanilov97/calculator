@@ -1,0 +1,14 @@
+body{
+    background-color: rgba(117, 205, 205, 0.542);
+}
+
+#circle{
+    margin: 10pt;
+    padding: 5pt;
+    background-color: brown;
+}
+
+#circle label{
+    margin-right: 5pt;
+}
+

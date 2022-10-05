@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ super() }}
+    <div class="container">
+        <div class="col-3">
+            <form id="circle" method="POST">
+                <div class="input-group mb-3">
+                    <label for="radius" class="input-group-text">Diameter</label><input id="radius" name="radius" type="text">
+                </div>
+                <div class="input-group mb-3">
+                    <select name="unit" id="unit" class="form-select">
+                        {% for unit in units %}
+                        <option value="{{unit[0]}}">{{ unit[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="submit">Calculate</label><input id="submit" type="submit" text="">
+                </div>
+            </form>
+        </div>
+        <div class="col-8">
+
+        </div>
+    </div>
+
+    <div>
+        {{ square }}
+    </div>
+{% endblock %}
