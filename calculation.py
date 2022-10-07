@@ -1,5 +1,5 @@
 import math
-from math import asin, cos, sin, pi
+from math import asin, cos, sin, pi, sqrt
 
 class Circle():
     def __init__(self, d):
@@ -13,7 +13,7 @@ class Cylyndre():
     def __init__(self) -> None:
         self.d
 
-class TorosphiricalBottom():
+class TorosphiricalDish():
     def __init__(self, D, R, r, h, s, H) -> None:
         self.D = D
         self.R = R
@@ -27,6 +27,7 @@ class TorosphiricalBottom():
         f = self.R/self.D # dish-radius parameter
 
         alpha = asin( (1 - 2*k)/(2*(f-k)) )
+        print(alpha/pi*180)
 
         a_1 = f * self.D * (1 - cos(alpha))
         a_2 = k * self.D * cos(alpha)
@@ -34,11 +35,16 @@ class TorosphiricalBottom():
         s = (k * self.D * sin(alpha))**2
         t = 2*a_2
 
-        V_1 = pi/4 * (2*a_1**3/3 + a_1*D_1**2/2)
-        V_2 = 1
-        V_3 = 1
-        V_4 = 1
+        print(a_1, a_2, D_1, s, t)
 
-        inner_volume = V_1 + V_2 + V_3 + V_4
-        return inner_volume        
-        pass
+        V_1 = pi/4 * (2*a_1**3/3 + a_1*D_1**2/2)
+        V_2 = pi*a_2 * ( (self.D/2 - k*self.D)**2 + s )
+        V_3 = pi*t**3/12
+        V_4_1 = pi*self.D*(1-2*k)
+        V_4_2 = t*sqrt(s)/4 + k**2*self.D**2/2*asin(cos(alpha)) 
+        V_4 = V_4_1 * V_4_2
+        V_5 = pi*self.D**2*self.h/4 
+        print(V_1, V_2, V_3, V_4, V_5)
+        inner_volume = V_1 + V_2 + V_3 + V_4 + V_5
+        return round(inner_volume, 3)       
+        
